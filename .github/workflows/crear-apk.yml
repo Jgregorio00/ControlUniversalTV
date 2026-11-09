@@ -1,1 +1,50 @@
 
+name: Crear APK Control Universal TV
+
+on:
+  push:
+    branches: [principal, main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compilar-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Preparar Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Instalar Android API 35
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+
+      - name: Extraer proyecto
+        run: unzip -q ControlUniversalTV_NIKKEL_Samsung_v2.zip -d proyecto
+
+      - name: Configurar Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Compilar APK
+        working-directory: proyecto/ControlUniversalTV_NIKKEL_Samsung
+        run: gradle --no-daemon :app:assembleDebug --stacktrace
+
+      - name: Publicar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ControlUniversalTV-APK
+          path: proyecto/ControlUniversalTV_NIKKEL_Samsung/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+
