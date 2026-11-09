@@ -30,7 +30,7 @@ jobs:
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
 
       - name: Extraer proyecto
-        run: unzip -q ControlUniversalTV_NIKKEL_Samsung_v2.zip -d proyecto
+        run: unzip -q ControlUniversalTV_NIKKEL_Samsung_v3_TLS_corregido.zip -d proyecto
 
       - name: Configurar Gradle
         uses: gradle/actions/setup-gradle@v4
