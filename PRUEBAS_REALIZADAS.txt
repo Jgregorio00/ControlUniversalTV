@@ -1,0 +1,17 @@
+Versión 2.0.0 – NIKKEL (Android TV v2) + Samsung Tizen
+
+COMPROBACIONES SUPERADAS:
+- Compilación JVM del módulo AndroidTvRemote.java mediante javac JDK 17.
+- Prueba del protocolo: serialización de enteros varint, tamaños 0, 1, 127, 128, 16384 y 65536; protobuf anidado; detección de final incompleto (EOF).
+- Análisis sintáctico de todas las fuentes Java de Android mediante el parser de javac.
+- Análisis sintáctico del JavaScript de la interfaz mediante Node.js.
+- Verificación de archivos de proyecto y comando Windows para compilar el APK.
+
+NO EJECUTADO / PENDIENTE:
+- Compilación real con Android Gradle Plugin + Android SDK (no están instalados aquí).
+- Prueba de TLS y vinculación en un NIKKEL físico.
+- Prueba de controles en Samsung físico.
+- Búsqueda mDNS en red Wi-Fi real.
+
+IMPORTANTE:
+El archivo descargable es el proyecto para compilar. No contiene un APK precompilado.
